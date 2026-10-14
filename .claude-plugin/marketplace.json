@@ -1,0 +1,13 @@
+{
+  "name": "trinam",
+  "owner": {
+    "name": "Trí Nam – Nhóm B05"
+  },
+  "plugins": [
+    {
+      "name": "test-ai-kit",
+      "source": "./plugins/test-ai-kit",
+      "description": "Bộ công cụ AI kiểm thử phần mềm Trí Nam chạy trên Claude Max: đọc hiểu hệ thống, sinh kịch bản và dữ liệu, chạy test trên trình duyệt, báo cáo và đẩy lên Lark Base."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Thư mục làm việc của tester (dữ liệu dự án, bằng chứng) – không đưa lên repo
+test-ai-kit/
+node_modules/
+__pycache__/
+*.log
+.env
+*.env
