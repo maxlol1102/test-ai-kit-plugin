@@ -58,6 +58,7 @@ Script Python chạy bằng `test-ai-kit/.venv` của tester (lệnh cài đặt
 | GĐ1 | Khung cài đặt: marketplace, lệnh cài đặt, Lark Base, đăng nhập an toàn, hướng dẫn cài | Xong (chưa thử cài thật) |
 | GĐ2 | Agent tổng + 8 agent con, skill và script | Xong (chưa chạy thử trong Claude Code) |
 | GĐ2.5 | Trang kết quả dạng Artifact, chạy thử DEMO ngay sau cài, hook khởi động phiên | Xong (chưa chạy thử trong Claude Code) |
+| GĐ2.6 | Tiếp nhận một lần: yêu cầu + tài liệu + dữ liệu + Figma + website → tự phân loại (`tiep_nhan.py`), phiếu tiếp nhận, tự chạy đến cổng đầu | Xong (đã thử phân loại trên SRS/CSDL BTXH thật) |
 | GĐ3 | Cài thử trên máy tester, chạy DEMO rồi BTXH bằng Claude Max, đo thời gian so với baseline | Tiếp theo |
 
 ## Thử plugin trên máy phát triển

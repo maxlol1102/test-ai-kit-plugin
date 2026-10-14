@@ -84,6 +84,11 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .nhat-ky .luc { color: var(--phu); font-variant-numeric: tabular-nums; font-size: 12px; }
 .tep { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; }
 .tep li { overflow-wrap: anywhere; }
+.dv { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 20px; margin-top: 10px; }
+.dv > div { min-width: 0; }
+.dv a, .dv .ma { overflow-wrap: anywhere; }
+.dv a { color: var(--nhan); }
+.dv ul { margin: 4px 0 0; padding-left: 18px; font-size: 13px; }
 .trong { color: var(--phu); font-size: 13px; margin-top: 8px; }
 .chan-trang { color: var(--phu); font-size: 12px; text-align: center; }
 </style>
@@ -125,6 +130,18 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 
   h += `<section class="the"><h2>Tiến độ quy trình</h2><ol class="buoc">${(D.buoc || []).map((b) => `
     <li class="${esc(b.trang_thai.replace(" ", "-"))}"><b>${esc(b.ten)}</b><span class="tt ${MAU_BUOC[b.trang_thai] || "trung"}">${esc(b.trang_thai)}</span>${b.tom_tat ? `<span class="tom">${esc(b.tom_tat)}</span>` : ""}</li>`).join("")}</ol></section>`;
+
+  const dv = D.dau_vao || {};
+  if (dv.website || (dv.figma || []).length || (dv.tai_lieu || []).length || dv.yeu_cau) {
+    const nhomTl = {};
+    (dv.tai_lieu || []).forEach((t) => (nhomTl[t.loai] = nhomTl[t.loai] || []).push(String(t.file || "").replace(/^dau-vao\//, "")));
+    const lienKet = (u) => /^https?:\/\//.test(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>` : esc(u);
+    h += `<section class="the"><h2>Đầu vào đã nhận</h2>${dv.yeu_cau ? `<p class="trong" style="margin-top:4px">${esc(dv.yeu_cau)}</p>` : ""}<div class="dv">
+      <div><div class="nhan-nho">Website kiểm thử</div>${dv.website ? lienKet(dv.website) : `<span class="trong">Chưa có</span>`}</div>
+      <div><div class="nhan-nho">Figma</div>${(dv.figma || []).length ? dv.figma.map(lienKet).join("<br>") : `<span class="trong">Không có – dùng ảnh SRS / quy ước UI</span>`}</div>
+      ${Object.entries(nhomTl).map(([loai, ds]) => `<div><div class="nhan-nho">${esc(loai)}</div><ul>${ds.map((f) => `<li class="ma">${esc(f)}</li>`).join("")}</ul></div>`).join("")}
+    </div></section>`;
+  }
 
   const datN = ttTc["Đạt"] || 0, khongN = ttTc["Không đạt"] || 0, chanN = ttTc["Bị chặn"] || 0, chuaN = ttTc["Chưa chạy"] || 0;
   const daChay = datN + khongN + chanN;

@@ -6,7 +6,7 @@ description: Kiểm tra (validate) phần thiết lập hệ thống do dev đã
 Bạn là agent **Kiểm tra thiết lập** của Test AI Kit. Mỗi hệ thống một khác nên **dev là người thiết lập**; bạn chỉ **xác minh từng trường thông tin** và báo mục sai/thiếu. Theo skill `dang-nhap-an-toan`, `quy-chuan-trinam`.
 
 ## Đầu vào
-- Checklist của dev trong `<dự án>/dau-vao/` (Excel/Markdown/ghi chú) nếu có.
+- Checklist của dev: file loại "Checklist thiết lập" trong `<dự án>/dau-vao/danh-muc.json` (Excel/Markdown/ghi chú) nếu có.
 - `<dự án>/kich-ban/test-case.json` (điều kiện trước, vai trò), `du-lieu/du-lieu.json` (danh mục/dữ liệu cần có), `ho-so/ho-so-he-thong.md`.
 - Trình duyệt **tester đã đăng nhập** (vai trò có quyền xem danh mục/cấu hình nếu được).
 

@@ -51,10 +51,14 @@ Không nhớ lệnh cũng được: mở phiên mới trong thư mục làm vi�
    /test-ai-kit:thu-demo
    ```
    Claude tự bật DEMO, tạo dự án mẫu và dẫn bạn đi hết quy trình. Tài khoản thử hiện ngay trên trang đăng nhập DEMO.
-2. **Hệ thống thật** được giao – gõ:
+2. **Hệ thống thật** được giao – gõ `/test-ai-kit:kiem-thu` rồi gửi **một tin** gồm tất cả những gì bạn có, ví dụ:
    ```
-   /test-ai-kit:kiem-thu
+   /test-ai-kit:kiem-thu Kiểm thử phân hệ Tiếp nhận hồ sơ, vai trò cán bộ xã, hạn 25/10.
+   Website: https://test.hethong.vn
+   Figma: https://www.figma.com/design/...
+   Tài liệu: D:\DuAn\BTXH   (hoặc kéo thả file SRS, CSDL, dữ liệu mẫu, checklist của dev vào ô chat)
    ```
+   Claude tự phân loại tài liệu, trình **phiếu tiếp nhận**, chỉ hỏi một lần phần còn thiếu, rồi tự chạy. Không cần gửi mật khẩu – bạn tự đăng nhập trên trình duyệt.
    **Agent tổng** hỏi mã dự án, URL, vai trò test, link Figma (nếu có), rồi dẫn từng bước: đọc hiểu tài liệu → kịch bản (bạn duyệt) → dữ liệu → kiểm tra thiết lập → kiểm tra điều kiện → chạy test trên trình duyệt (bạn xác nhận kết quả) → báo cáo → Lark.
 3. Khi cửa sổ Edge mở trang đăng nhập – **bạn tự đăng nhập**, xong nhắn "xong". Claude không bao giờ nhập hay nhìn thấy mật khẩu; phiên đăng nhập mất khi đóng trình duyệt.
 4. Hỏi tiến độ bất cứ lúc nào: `/test-ai-kit:kiem-thu tiến độ`.

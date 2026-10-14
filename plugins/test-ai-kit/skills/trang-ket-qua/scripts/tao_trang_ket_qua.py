@@ -68,6 +68,7 @@ def tao(da, ra=None):
         "buoc": [{"ten": ten, "trang_thai": b.get(k, {}).get("trang_thai", "Chưa làm"),
                   "tom_tat": b.get(k, {}).get("tom_tat") or b.get(k, {}).get("ly_do") or b.get(k, {}).get("loi") or ""} for k, ten in BUOC],
         "can_tester": viec_cua_tester(st, tk, tcs),
+        "dau_vao": st.get("dau_vao", {}),
         "thong_ke": tk,
         "test_cases": [{"ma_tc": t.get("ma_tc", ""), "tieu_de": t.get("tieu_de", ""), "chuc_nang": t.get("chuc_nang", ""),
                         "nhom": t.get("nhom", ""), "uu_tien": t.get("uu_tien", ""), "trang_thai": t.get("trang_thai") or "Chưa chạy",

@@ -6,7 +6,7 @@ Mỗi hệ thống kiểm thử là một thư mục trong `test-ai-kit/du-an/<M
 test-ai-kit/du-an/<MÃ>/
 ├── trang-thai.json            ← Agent tổng đọc/ghi – nguồn sự thật về tiến độ
 ├── he-thong.md                ← thông tin tester cung cấp: URL, vai trò, Figma, chuyên đề, phạm vi
-├── dau-vao/                   ← tester để tài liệu vào đây: SRS, CSDL, ảnh UI, quy ước UI, checklist thiết lập của dev
+├── dau-vao/                   ← tài liệu tester gửi (SRS, CSDL, dữ liệu mẫu, ảnh UI, checklist dev) + danh-muc.json (phân loại) + yeu-cau.md
 ├── ho-so/                     ← agent doc-hieu-he-thong
 │   ├── ho-so-he-thong.md      ← bản đọc hiểu tổng hợp (đọc file này trước tiên)
 │   ├── srs/                   ← muc-luc.md, chuc-nang/<mã>.md, anh/, cau-truc-srs.json, chung.md, phi-chuc-nang.md
@@ -33,6 +33,7 @@ Không lưu mật khẩu, cookie, token ở bất kỳ file nào.
   "url": "https://...",
   "nguoi_phu_trach": "Họ tên tester (từ test-ai-kit/cau-hinh.json)",
   "tao_luc": "14/10/2026 09:00",
+  "dau_vao": {"website": "https://...", "figma": ["https://www.figma.com/design/..."], "tai_lieu": [{"file": "dau-vao/SRS.docx", "loai": "SRS"}], "yeu_cau": "Test phân hệ IV.4, vai trò cán bộ xã", "tiep_nhan_luc": "..."},
   "buoc": {
     "ho_so":      {"trang_thai": "Xong", "luc": "...", "tom_tat": "5 phân hệ, 233 chức năng; chuyên đề: Bảo trợ xã hội"},
     "giao_dien":  {"trang_thai": "Chưa làm"},

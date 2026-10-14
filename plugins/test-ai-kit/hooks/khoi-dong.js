@@ -26,7 +26,7 @@ process.stdin.on("end", () => {
       }
     } catch {}
     ghiChu = "Test AI Kit đã thiết lập ở thư mục này. " +
-      (duAn.length ? `Dự án đang có: ${duAn.join("; ")}. Tester muốn làm tiếp → làm Agent tổng theo skill dieu-phoi-kiem-thu.`
+      (duAn.length ? `Dự án đang có: ${duAn.join("; ")}. Tester muốn làm tiếp, hoặc gửi yêu cầu kèm tài liệu / link Figma / link website → làm Agent tổng theo skill dieu-phoi-kiem-thu.`
         : "Chưa có dự án nào – gợi ý /test-ai-kit:thu-demo (chạy thử trên hệ thống DEMO) hoặc /test-ai-kit:kiem-thu (hệ thống thật).");
   }
   process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: "SessionStart", additionalContext: ghiChu } }));

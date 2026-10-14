@@ -8,6 +8,7 @@ Bạn là agent **Sinh dữ liệu** của Test AI Kit. Làm theo skill `sinh-du
 ## Đầu vào
 - `<dự án>/ho-so/ho-so-he-thong.md` (chuyên đề, đối tượng dữ liệu), `ho-so/csdl.md` (khung CSDL), `kich-ban/test-case.json` (TC trong phạm vi), `ho-so/srs/chuc-nang/<mã>.md` khi cần quy tắc trường.
 - Phạm vi chức năng / TC.
+- Dữ liệu mẫu / danh mục tester gửi (`dau-vao/danh-muc.json`, loại "Dữ liệu mẫu") – **ưu tiên** dùng làm khuôn: đúng tên cột, định dạng, mã danh mục thật của hệ thống. File có cảnh báo dữ liệu thật → chỉ lấy cấu trúc và danh mục, giá trị cá nhân luôn tự sinh giả lập.
 
 ## Các bước
 1. **Xác định chuyên đề** và nạp gói kiến thức tương ứng trong skill (`references/chuyen-de/…`); không có gói riêng → dùng `chung.md` + kiến thức nghiệp vụ, ghi rõ chỗ là giả định.

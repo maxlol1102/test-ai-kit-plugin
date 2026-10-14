@@ -18,6 +18,7 @@ Chưa có `.venv` → chạy `/test-ai-kit:cai-dat` (cài Python và thư viện
 | SRS .docx theo mẫu Trí Nam (có mục "YÊU CẦU CHI TIẾT VỀ CHỨC NĂNG", phân hệ `IV.x`, mỗi chức năng có bảng "a. Thông tin chức năng") | `python tach_srs.py srs <SRS.docx> <thư mục ra>` | `muc-luc.md`, `chuc-nang/<mã>.md`, `anh/<mã>-<n>.png`, `chung.md`, `phi-chuc-nang.md`, `cau-truc-srs.json` |
 | Thiết kế CSDL .docx | `python tach_srs.py csdl <CSDL.docx> <file.md>` | Markdown giữ thứ tự đoạn và bảng trường |
 | Tài liệu khác (.docx/.pdf/.md/.txt) | `python tach_srs.py van-ban <file> <file.md>` | Chữ thuần |
+| Tiếp nhận file/thư mục tester gửi | `python tiep_nhan.py <thư mục dự án> "<đường dẫn>" ...` | Chép vào `dau-vao/`, phân loại từng file (theo tên + nội dung), cảnh báo CCCD/SĐT thật, ghi `dau-vao/danh-muc.json` |
 
 Mỗi lệnh in **một dòng JSON** (số phân hệ/chức năng/ảnh hoặc `{"loi": ...}`).
 

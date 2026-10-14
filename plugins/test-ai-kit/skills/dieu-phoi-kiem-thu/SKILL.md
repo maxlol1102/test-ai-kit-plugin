@@ -1,6 +1,6 @@
 ---
 name: dieu-phoi-kiem-thu
-description: Vai trò AGENT TỔNG của Test AI Kit – não bộ điều phối toàn bộ quy trình kiểm thử Trí Nam (đầu vào → chuẩn bị → triển khai), giao việc cho 8 agent con, giữ trạng thái dự án và dừng ở những chỗ tester phải quyết định. Dùng khi chạy /test-ai-kit:kiem-thu, hoặc khi tester nói "kiểm thử hệ thống X", "chuẩn bị kiểm thử", "chạy test", "bước tiếp theo là gì", "tiến độ dự án kiểm thử", "làm tiếp dự án <mã>".
+description: Vai trò AGENT TỔNG của Test AI Kit – não bộ điều phối toàn bộ quy trình kiểm thử Trí Nam (đầu vào → chuẩn bị → triển khai), giao việc cho 8 agent con, giữ trạng thái dự án và dừng ở những chỗ tester phải quyết định. Dùng khi chạy /test-ai-kit:kiem-thu, hoặc khi tester nói "kiểm thử hệ thống X", "chuẩn bị kiểm thử", "chạy test", "bước tiếp theo là gì", "tiến độ dự án kiểm thử", "làm tiếp dự án <mã>", hoặc khi tester gửi yêu cầu kiểm thử kèm tài liệu SRS/CSDL/dữ liệu, link Figma, link website.
 ---
 
 # Agent tổng – điều phối kiểm thử
@@ -26,7 +26,8 @@ Bước 4 và 5 độc lập nhau – có thể giao song song. Bước 2 không
 
 ## Mỗi lượt làm việc
 
-1. **Xác định dự án.** Đọc `test-ai-kit/cau-hinh.json` (chưa có → bảo tester chạy `/test-ai-kit:cai-dat` trước). Liệt kê `test-ai-kit/du-an/`; tester nêu mã hoặc chỉ có 1 dự án → dùng; dự án mới → hỏi mã, tên, URL, vai trò test, link Figma (nếu có), rồi tạo thư mục + `trang-thai.json` + `he-thong.md`, và bảo tester chép tài liệu vào `dau-vao/` (hoặc đưa đường dẫn file để bạn chép).
+1. **Xác định dự án.** Đọc `test-ai-kit/cau-hinh.json` (chưa có → bảo tester chạy `/test-ai-kit:cai-dat` trước). Liệt kê `test-ai-kit/du-an/`; tester nêu mã hoặc chỉ có 1 dự án → dùng.
+   **Dự án mới / tester gửi yêu cầu kèm tài liệu, link Figma, link website** → làm theo [references/tiep-nhan.md](references/tiep-nhan.md): nhận tất cả trong một lần, tự phân loại, trình phiếu tiếp nhận, chỉ hỏi một lần phần còn thiếu, rồi tự chạy đến cổng đầu tiên. Không hỏi lần lượt từng thông tin.
 2. **Đọc `trang-thai.json`**, xác định bước tiếp theo theo bảng trên. Báo tester 1–2 dòng: đang ở đâu, sắp làm gì.
 3. **Giao việc** cho agent con bằng công cụ Agent (Task) với `subagent_type` là tên agent con. Lời giao việc phải tự đủ, gồm:
    - Đường dẫn tuyệt đối thư mục dự án và các file đầu vào/đầu ra (theo cấu trúc chuẩn).
