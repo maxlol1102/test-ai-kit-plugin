@@ -1,0 +1,63 @@
+{
+  "_ghi_chu": "Cấu trúc Lark Base 'Quản lý kiểm thử'. type theo Lark Bitable: 1 Văn bản, 2 Số, 3 Chọn một, 5 Ngày, 11 Người, 15 Liên kết URL. Trường đầu tiên của mỗi bảng là trường chính. 'Mã dự án' để dạng văn bản (không dùng trường liên kết) để import/đồng bộ đơn giản.",
+  "ten_base": "Quản lý kiểm thử",
+  "bang": [
+    {
+      "ten": "Dự án",
+      "truong": [
+        { "ten": "Mã dự án", "type": 1 },
+        { "ten": "Tên dự án", "type": 1 },
+        { "ten": "Người phụ trách", "type": 11 },
+        { "ten": "Ngày bắt đầu", "type": 5 },
+        { "ten": "Trạng thái", "type": 3, "lua_chon": ["Đang chuẩn bị", "Đang kiểm thử", "Tạm dừng", "Đã nghiệm thu"] },
+        { "ten": "Hệ thống test", "type": 15 },
+        { "ten": "Ghi chú", "type": 1 }
+      ]
+    },
+    {
+      "ten": "Test case",
+      "truong": [
+        { "ten": "Mã TC", "type": 1 },
+        { "ten": "Mã dự án", "type": 1 },
+        { "ten": "Mã yêu cầu", "type": 1 },
+        { "ten": "Chức năng", "type": 1 },
+        { "ten": "Tiêu đề", "type": 1 },
+        { "ten": "Nhóm", "type": 3, "lua_chon": ["Happy case", "Chức năng", "UI/UX", "Hiệu năng"] },
+        { "ten": "Loại", "type": 3, "lua_chon": ["Chức năng", "Giao diện", "Phân quyền", "Biên", "Ngoại lệ", "API", "Hiệu năng", "ATTT"] },
+        { "ten": "Ưu tiên", "type": 3, "lua_chon": ["Cao", "Trung bình", "Thấp"] },
+        { "ten": "Trạng thái", "type": 3, "lua_chon": ["Chưa chạy", "Đạt", "Không đạt", "Bị chặn"] },
+        { "ten": "Người phụ trách", "type": 11 }
+      ]
+    },
+    {
+      "ten": "Lỗi",
+      "truong": [
+        { "ten": "Mã lỗi", "type": 1 },
+        { "ten": "Mã dự án", "type": 1 },
+        { "ten": "Tiêu đề", "type": 1 },
+        { "ten": "Mức độ", "type": 3, "lua_chon": ["Critical", "Major", "Minor", "Trivial"] },
+        { "ten": "Độ ưu tiên", "type": 3, "lua_chon": ["P1", "P2", "P3", "P4"] },
+        { "ten": "Trạng thái", "type": 3, "lua_chon": ["Mới", "Đang sửa", "Đã sửa", "Đóng", "Mở lại", "Từ chối"] },
+        { "ten": "Người phụ trách", "type": 11 },
+        { "ten": "Nguồn phát hiện", "type": 3, "lua_chon": ["AI", "Tester"] },
+        { "ten": "Test case liên quan", "type": 1 },
+        { "ten": "Ngày phát hiện", "type": 5 }
+      ]
+    },
+    {
+      "ten": "Lần chạy",
+      "truong": [
+        { "ten": "Mã lần chạy", "type": 1 },
+        { "ten": "Mã dự án", "type": 1 },
+        { "ten": "Ngày bắt đầu", "type": 5 },
+        { "ten": "Người phụ trách", "type": 11 },
+        { "ten": "Phạm vi", "type": 1 },
+        { "ten": "Số TC", "type": 2 },
+        { "ten": "Đạt", "type": 2 },
+        { "ten": "Không đạt", "type": 2 },
+        { "ten": "Bị chặn", "type": 2 },
+        { "ten": "Trạng thái", "type": 3, "lua_chon": ["Đang chạy", "Xong", "Dừng giữa chừng"] }
+      ]
+    }
+  ]
+}

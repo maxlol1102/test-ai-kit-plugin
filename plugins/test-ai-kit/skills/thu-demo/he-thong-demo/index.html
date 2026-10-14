@@ -60,6 +60,8 @@
   .dang-nhap h2 { text-align: center; }
   .dang-nhap .mo-ta { text-align: center; }
   .dang-nhap button { width: 100%; margin-top: 6px; }
+  .tk-thu { margin-top: 14px; padding: 10px 12px; border: 1px dashed var(--nhat); border-radius: 6px; font-size: 12.5px; line-height: 1.7; }
+  .tk-thu code { font-size: 12px; }
   .chan-trang { text-align: center; color: var(--nhat); font-size: 12px; padding: 0 24px 24px; }
   @media (max-width: 720px) { .luoi-2 { grid-template-columns: 1fr; } .ten-he-thong span { display: none; } }
 </style>
@@ -103,7 +105,8 @@ function veDangNhap(loi = "") {
   $("#trang").innerHTML = `<div class="dang-nhap"><div class="the"><h2>Đăng nhập</h2><p class="mo-ta">Dành cho cán bộ tiếp nhận hồ sơ</p>${loi ? `<div class="tb sai">${esc(loi)}</div>` : ""}
   <div class="dong"><label for="tdn">Tên đăng nhập</label><input id="tdn"></div>
   <div class="dong"><label for="mk">Mật khẩu</label><input id="mk" type="password"></div>
-  <button class="chinh" onclick="dangNhap()">Đăng nhập</button></div></div>`;
+  <button class="chinh" onclick="dangNhap()">Đăng nhập</button>
+  <div class="tk-thu"><b>Tài khoản thử (giả lập, chỉ dùng cho DEMO)</b>${TAI_KHOAN_DEMO.map((t) => `<div>${esc(t.vai_tro)} – ${esc(t.don_vi)}: <code>${esc(t.ten_dang_nhap)}</code> / <code>${esc(t.mat_khau)}</code></div>`).join("")}</div></div></div>`;
 }
 function dangNhap() {
   const tk = TAI_KHOAN_DEMO.find((t) => t.ten_dang_nhap === $("#tdn").value.trim() && t.mat_khau === $("#mk").value);

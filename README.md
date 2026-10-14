@@ -22,7 +22,7 @@ Tester ──/test-ai-kit:kiem-thu──▶ AGENT TỔNG (phiên chính: điều
    └───────────────┴───────────────┴────────────────┴─────────────────┘
                  6 Kiểm tra điều kiện (cổng) ─▶ 7 Thực thi (Playwright) ─▶ 8 Báo lỗi + báo cáo + Lark
 ```
-Kết quả mỗi bước là file trong thư mục làm việc của tester: `test-ai-kit/du-an/<MÃ>/` (cấu trúc: skill `dieu-phoi-kiem-thu/references/cau-truc-du-an.md`).
+Kết quả mỗi bước là file trong thư mục làm việc của tester: `test-ai-kit/du-an/<MÃ>/` (cấu trúc: skill `dieu-phoi-kiem-thu/references/cau-truc-du-an.md`), và được tổng hợp thành **trang kết quả dạng Artifact** trên claude.ai (một link mỗi dự án, cập nhật sau mỗi bước; tester tự quyết định chia sẻ).
 
 ## Cấu trúc repo
 
@@ -30,8 +30,8 @@ Kết quả mỗi bước là file trong thư mục làm việc của tester: `t
 .claude-plugin/marketplace.json       marketplace "trinam"
 plugins/test-ai-kit/
 ├── .mcp.json                         Playwright MCP (--isolated, Edge) – không lưu phiên đăng nhập
-├── hooks/                            chặn AI gõ vào ô mật khẩu / OTP
-├── commands/                         /test-ai-kit:cai-dat · /test-ai-kit:kiem-thu (Agent tổng) · /test-ai-kit:mo-he-thong
+├── hooks/                            khởi động phiên (dẫn tester: cài đặt / chạy thử / làm tiếp) · chặn AI gõ vào ô mật khẩu / OTP
+├── commands/                         /test-ai-kit:cai-dat · /test-ai-kit:thu-demo · /test-ai-kit:kiem-thu (Agent tổng) · /test-ai-kit:mo-he-thong
 ├── agents/                           8 agent con: doc-hieu-he-thong, kham-pha-giao-dien, thiet-ke-kich-ban, sinh-du-lieu,
 │                                     kiem-tra-thiet-lap, kiem-tra-dieu-kien, thuc-thi, bao-loi-bao-cao
 └── skills/
@@ -43,9 +43,10 @@ plugins/test-ai-kit/
     ├── sinh-test-case-trinam/        4 nhóm kịch bản, DX, xuất Excel có tự kiểm tra
     ├── sinh-du-lieu-chuyen-de/       gói chuyên đề (chung, Bảo trợ xã hội, Thủ tục hành chính), xuất Excel, tạo văn bản .docx
     ├── xuat-bao-cao/                 thống kê bằng code + Biểu mẫu kết quả (Mẫu 3)
+    ├── trang-ket-qua/                trang kết quả mỗi dự án → Artifact trên claude.ai, cập nhật cùng link sau mỗi bước
     ├── day-len-lark/                 đồng bộ 4 bảng, không xoá, ≤ 500 bản ghi/lần
-    └── cai-dat-lark-base/            tạo/nối Lark Base "Quản lý kiểm thử"
-mau/                                  SRS giả lập + hệ thống DEMO có 4 lỗi cài sẵn để thử
+    ├── cai-dat-lark-base/            tạo/nối Lark Base "Quản lý kiểm thử"
+    └── thu-demo/                     SRS giả lập + hệ thống DEMO có 4 lỗi cài sẵn – chạy thử ngay sau khi cài
 ```
 
 Script Python chạy bằng `test-ai-kit/.venv` của tester (lệnh cài đặt tự tạo).
@@ -56,6 +57,7 @@ Script Python chạy bằng `test-ai-kit/.venv` của tester (lệnh cài đặt
 |---|---|---|
 | GĐ1 | Khung cài đặt: marketplace, lệnh cài đặt, Lark Base, đăng nhập an toàn, hướng dẫn cài | Xong (chưa thử cài thật) |
 | GĐ2 | Agent tổng + 8 agent con, skill và script | Xong (chưa chạy thử trong Claude Code) |
+| GĐ2.5 | Trang kết quả dạng Artifact, chạy thử DEMO ngay sau cài, hook khởi động phiên | Xong (chưa chạy thử trong Claude Code) |
 | GĐ3 | Cài thử trên máy tester, chạy DEMO rồi BTXH bằng Claude Max, đo thời gian so với baseline | Tiếp theo |
 
 ## Thử plugin trên máy phát triển

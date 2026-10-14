@@ -42,10 +42,16 @@ Gõ:
 ```
 Claude kiểm tra Node.js, cài Python và thư viện (hỏi trước khi cài), kiểm tra trình duyệt, kết nối Lark, tạo thư mục làm việc và **Lark Base "Quản lý kiểm thử"** (hỏi bạn đồng ý trước khi tạo). Làm theo các mục báo ⚠️/❌ nếu có.
 
+Không nhớ lệnh cũng được: mở phiên mới trong thư mục làm việc và gõ "chào" – Claude tự nhận biết đã cài đặt chưa, có dự án nào đang dở, và gợi ý bước tiếp.
+
 ## Dùng thử
 
-1. Bấm đúp `mau/he-thong-demo/CHAY-DEMO.cmd` trong repo (hệ thống DEMO giả lập, cổng 8766) – hoặc dùng hệ thống thật được giao.
-2. Gõ:
+1. **Chạy thử ngay** trên hệ thống DEMO giả lập đi kèm (có 4 lỗi cài sẵn, không cần tài liệu hay hệ thống thật):
+   ```
+   /test-ai-kit:thu-demo
+   ```
+   Claude tự bật DEMO, tạo dự án mẫu và dẫn bạn đi hết quy trình. Tài khoản thử hiện ngay trên trang đăng nhập DEMO.
+2. **Hệ thống thật** được giao – gõ:
    ```
    /test-ai-kit:kiem-thu
    ```
@@ -53,7 +59,9 @@ Claude kiểm tra Node.js, cài Python và thư viện (hỏi trước khi cài)
 3. Khi cửa sổ Edge mở trang đăng nhập – **bạn tự đăng nhập**, xong nhắn "xong". Claude không bao giờ nhập hay nhìn thấy mật khẩu; phiên đăng nhập mất khi đóng trình duyệt.
 4. Hỏi tiến độ bất cứ lúc nào: `/test-ai-kit:kiem-thu tiến độ`.
 
-Kết quả nằm trong `test-ai-kit/du-an/<mã>/` của thư mục làm việc (Excel kịch bản, dữ liệu, biểu mẫu kết quả, ảnh bằng chứng).
+**Trang kết quả:** mỗi dự án có một trang web riêng tư trên claude.ai (Artifact) – tiến độ, việc bạn cần làm, test case, lỗi – Claude gửi link và cập nhật sau mỗi bước, mở được cả trên điện thoại. Muốn trưởng nhóm xem thì bấm **Chia sẻ** trên trang.
+
+File gốc nằm trong `test-ai-kit/du-an/<mã>/` của thư mục làm việc (Excel kịch bản, dữ liệu, biểu mẫu kết quả, ảnh bằng chứng).
 
 ## Cập nhật bản mới
 
