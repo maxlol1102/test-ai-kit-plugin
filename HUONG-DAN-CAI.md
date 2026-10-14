@@ -40,7 +40,7 @@ Gõ:
 ```
 /test-ai-kit:cai-dat
 ```
-Claude kiểm tra Node.js, cài Python và thư viện (hỏi trước khi cài), kiểm tra trình duyệt, kết nối Lark, tạo thư mục làm việc và **Lark Base "Quản lý kiểm thử"** (hỏi bạn đồng ý trước khi tạo). Làm theo các mục báo ⚠️/❌ nếu có.
+Claude kiểm tra Node.js, cài Python và thư viện (hỏi trước khi cài), kiểm tra trình duyệt, kết nối Lark, **kết nối Figma** (đã kèm sẵn trong plugin – bạn chỉ đăng nhập Figma một lần: gõ `/mcp` → `plugin:test-ai-kit:figma` → Authenticate → Allow), tạo thư mục làm việc và **Lark Base "Quản lý kiểm thử"** (hỏi bạn đồng ý trước khi tạo). Làm theo các mục báo ⚠️/❌ nếu có.
 
 Không nhớ lệnh cũng được: mở phiên mới trong thư mục làm việc và gõ "chào" – Claude tự nhận biết đã cài đặt chưa, có dự án nào đang dở, và gợi ý bước tiếp.
 
@@ -59,7 +59,7 @@ Không nhớ lệnh cũng được: mở phiên mới trong thư mục làm vi�
    Tài liệu: D:\DuAn\BTXH   (hoặc kéo thả file SRS, CSDL, dữ liệu mẫu, checklist của dev vào ô chat)
    ```
    Claude tự phân loại tài liệu, trình **phiếu tiếp nhận**, chỉ hỏi một lần phần còn thiếu, rồi tự chạy. Không cần gửi mật khẩu – bạn tự đăng nhập trên trình duyệt.
-   **Agent tổng** hỏi mã dự án, URL, vai trò test, link Figma (nếu có), rồi dẫn từng bước: đọc hiểu tài liệu → kịch bản (bạn duyệt) → dữ liệu → kiểm tra thiết lập → kiểm tra điều kiện → chạy test trên trình duyệt (bạn xác nhận kết quả) → báo cáo → Lark.
+   **Agent tổng** dẫn từng bước: đọc hiểu tài liệu → kịch bản (bạn duyệt) → dữ liệu → kiểm tra thiết lập → kiểm tra điều kiện → chạy test trên trình duyệt (bạn xác nhận kết quả) → báo cáo → Lark.
 3. Khi cửa sổ Edge mở trang đăng nhập – **bạn tự đăng nhập**, xong nhắn "xong". Claude không bao giờ nhập hay nhìn thấy mật khẩu; phiên đăng nhập mất khi đóng trình duyệt.
 4. Hỏi tiến độ bất cứ lúc nào: `/test-ai-kit:kiem-thu tiến độ`.
 

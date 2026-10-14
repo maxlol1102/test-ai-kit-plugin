@@ -1,5 +1,5 @@
 ---
-description: Cài đặt và kiểm tra Test AI Kit trên máy tester – Node.js, trình duyệt Playwright, kết nối Lark, Lark Base "Quản lý kiểm thử", thư mục làm việc
+description: Cài đặt và kiểm tra Test AI Kit trên máy tester – Node.js, trình duyệt Playwright, kết nối Lark, kết nối Figma, Lark Base "Quản lý kiểm thử", thư mục làm việc
 ---
 
 Bạn đang cài đặt Test AI Kit cho tester. Làm lần lượt, mỗi mục báo ✅ / ⚠️ / ❌ ngắn gọn bằng tiếng Việt. Không hỏi API key (công cụ chạy bằng gói Claude Max, không dùng Claude API).
@@ -28,29 +28,40 @@ Bạn đang cài đặt Test AI Kit cho tester. Làm lần lượt, mỗi mục 
 
 ## 4. Kết nối Lark
 
-- Tìm công cụ `lark-base` (vd liệt kê base: `bitable_v1_app_get` không cần, chỉ cần thấy công cụ có sẵn).
-  - Có → thử một lệnh đọc nhẹ với `useUAT: true` để chắc đã đăng nhập. Lỗi xác thực → nhắc bấm `DANG-NHAP-LAI.cmd` trong thư mục bộ cài TRINAM-Claude-Lark.
+- Tìm công cụ của kết nối `lark-base` (tên dạng `mcp__lark-base__…`).
+  - Có → thử một lệnh chỉ đọc, vd `wiki_v2_space_list` với `useUAT: true`, để chắc đã đăng nhập. Lỗi xác thực → nhắc bấm `DANG-NHAP-LAI.cmd` trong thư mục bộ cài TRINAM-Claude-Lark.
   - Không có → ⚠️, hướng dẫn cài bộ **TRINAM-Claude-Lark** (bấm `CAI-DAT.cmd`, đăng nhập Lark, Authorize), thoát hẳn Claude rồi mở lại, sau đó chạy lại lệnh này. Các bước còn lại vẫn làm được, riêng Lark để sau.
 
-## 5. Thư mục làm việc
+## 5. Kết nối Figma
+
+Plugin đã kèm sẵn máy chủ Figma chính thức (`figma`, `https://mcp.figma.com/mcp`) – tester chỉ cần đăng nhập Figma một lần.
+
+- **Đã có kết nối Figma của claude.ai** (công cụ dạng `mcp__claude_ai_Figma__…`) → gọi `whoami` của nó. Được → ✅ dùng kết nối này. Để khỏi trùng hai bộ công cụ Figma, gợi ý tester gõ `/mcp`, chọn `plugin:test-ai-kit:figma` → **Disable** (không bắt buộc).
+- **Chưa có** → dùng máy chủ `figma` của plugin (công cụ dạng `mcp__plugin_test-ai-kit_figma__…`):
+  - Gọi `whoami` được → ✅ (báo tên tài khoản Figma).
+  - Chưa đăng nhập (không thấy công cụ Figma, chỉ thấy công cụ `authenticate`, hoặc báo lỗi xác thực) → hướng dẫn: gõ **`/mcp`** → chọn **`plugin:test-ai-kit:figma`** → **Authenticate** → trình duyệt mở trang Figma → đăng nhập → **Allow access** → quay lại Claude. Có công cụ `authenticate` thì gọi nó và đưa tester đường link đăng nhập. Xong thì thử `whoami` lại.
+- Tester không dùng Figma (dự án không có thiết kế) → ⚠️ "Bỏ qua – dùng ảnh SRS / quy ước UI", không chặn.
+- Ghi tài khoản Figma (email/tên do `whoami` trả về) vào `cau-hinh.json` mục `figma` để biết sau này đang dùng kết nối nào.
+
+## 6. Thư mục làm việc
 
 Trong thư mục hiện tại tạo (nếu chưa có):
 ```
 test-ai-kit/
-├── cau-hinh.json      ← {"phien_ban": "<version trong plugin.json>", "nguoi_dung": {...}, "lark": {...}}
+├── cau-hinh.json      ← {"phien_ban": "<version trong plugin.json>", "nguoi_dung": {...}, "lark": {...}, "figma": {...}}
 ├── .venv/             ← Python + thư viện cho script (bước 2)
 ├── du-an/             ← mỗi hệ thống kiểm thử một thư mục con
 └── bang-chung/        ← ảnh chụp do Playwright lưu
 ```
 Hỏi họ tên + chức danh của tester (Tester / Trưởng nhóm kiểm thử / BA / Quản lý dự án) để ghi vào `nguoi_dung` – tên này ghi vào kết quả, người duyệt, người xác nhận lỗi. Đã có thì giữ, chỉ hỏi có muốn đổi không.
 
-## 6. Lark Base
+## 7. Lark Base
 
 Kết nối Lark ✅ → làm theo skill `cai-dat-lark-base` (trình cấu trúc, chờ tester đồng ý rồi mới tạo).
 
-## 7. Tổng kết
+## 8. Tổng kết
 
-Bảng 6 dòng (Môi trường, Python, Trình duyệt, Lark, Thư mục làm việc, Lark Base) với trạng thái và việc tester cần làm nếu có. Lark chưa xong không chặn việc dùng thử.
+Bảng 7 dòng (Môi trường, Python, Trình duyệt, Lark, Figma, Thư mục làm việc, Lark Base) với trạng thái và việc tester cần làm nếu có. Lark hoặc Figma chưa xong không chặn việc dùng thử.
 
 Kết thúc bằng 2 lựa chọn:
 - **Dùng thử ngay** (khuyên dùng lần đầu): `/test-ai-kit:thu-demo` – chạy cả quy trình trên hệ thống DEMO giả lập đi kèm, có trang kết quả để xem.

@@ -47,7 +47,7 @@ Không hỏi lần lượt từng thứ. Nhận hết, tự phân loại, chỉ 
 
 ## Figma
 
-- Cần kết nối Figma của Claude (claude.ai → Settings → Connectors → Figma). Thử gọi một công cụ Figma (vd `whoami` hoặc `get_metadata` với link); lỗi/không có công cụ → ghi chú trong phiếu tiếp nhận "Chưa kết nối Figma – bật trong Settings → Connectors", vẫn chạy tiếp bằng ảnh/SRS/quy ước UI, khi tester bật xong thì giao `doc-hieu-he-thong` cập nhật riêng phần `ui.md`.
+- Plugin kèm sẵn máy chủ Figma; tester chỉ cần đăng nhập một lần (lệnh cài đặt đã dẫn). Thử gọi `whoami` của kết nối Figma (claude.ai hoặc `plugin:test-ai-kit:figma`); chưa đăng nhập → ghi chú trong phiếu tiếp nhận "Chưa đăng nhập Figma – gõ /mcp → plugin:test-ai-kit:figma → Authenticate", vẫn chạy tiếp bằng ảnh/SRS/quy ước UI, khi tester bật xong thì giao `doc-hieu-he-thong` cập nhật riêng phần `ui.md`.
 - Link cả file (không có `node-id`) → agent liệt kê trang/frame bằng `get_metadata` rồi ánh xạ frame ↔ chức năng; link tới một frame → chỉ frame đó và các frame con.
 - Link Figma riêng tư mà tài khoản Figma của tester không có quyền → báo cần xin quyền xem từ người sở hữu file.
 

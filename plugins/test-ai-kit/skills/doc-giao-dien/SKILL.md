@@ -8,7 +8,7 @@ description: Lấy chuẩn giao diện (UI/UX) để thiết kế và chấm tes
 Kết quả ghi vào `<dự án>/ho-so/ui.md`, theo thứ tự ưu tiên nguồn:
 
 ## 1. Có link Figma (trong `he-thong.md` hoặc tester đưa)
-- Dùng kết nối **Figma** của Claude (công cụ `get_metadata`, `get_screenshot`, `get_design_context`… của Figma MCP). Chưa có kết nối → báo tester: vào claude.ai → Settings → Connectors → bật Figma và đăng nhập, rồi chạy lại; trong lúc chờ dùng nguồn 2–3.
+- Dùng kết nối **Figma** (công cụ `get_metadata`, `get_screenshot`, `get_design_context`…): ưu tiên kết nối claude.ai (`mcp__claude_ai_Figma__…`) nếu có, không thì máy chủ `figma` kèm plugin (`mcp__plugin_test-ai-kit_figma__…`). Chưa đăng nhập → báo Agent tổng nhờ tester: gõ `/mcp` → `plugin:test-ai-kit:figma` → Authenticate → đăng nhập Figma → Allow; trong lúc chờ dùng nguồn 2–3.
 - Với mỗi frame tương ứng chức năng trong phạm vi: tên màn, bố cục (vùng tiêu đề, bộ lọc, lưới, form, nút), danh sách trường (nhãn, loại, bắt buộc, placeholder), nút và trạng thái (mờ/ẩn), thông báo, màu/kiểu chữ nếu có token thiết kế. Lưu ảnh chụp frame vào `<dự án>/ho-so/ui-anh/`.
 - Ghi bảng ánh xạ **frame Figma ↔ mã chức năng**.
 

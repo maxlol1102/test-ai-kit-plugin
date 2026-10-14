@@ -1,6 +1,6 @@
 {
   "name": "test-ai-kit",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "Bộ công cụ AI kiểm thử phần mềm Trí Nam – chạy trên Claude Code (gói Claude Max), không dùng Claude API.",
   "author": {
     "name": "Trí Nam – Nhóm B05"

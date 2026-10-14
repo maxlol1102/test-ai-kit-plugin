@@ -29,7 +29,7 @@ Kết quả mỗi bước là file trong thư mục làm việc của tester: `t
 ```
 .claude-plugin/marketplace.json       marketplace "trinam"
 plugins/test-ai-kit/
-├── .mcp.json                         Playwright MCP (--isolated, Edge) – không lưu phiên đăng nhập
+├── .mcp.json                         Playwright MCP (--isolated, Edge – không lưu phiên) + Figma MCP chính thức (mỗi tester đăng nhập 1 lần)
 ├── hooks/                            khởi động phiên (dẫn tester: cài đặt / chạy thử / làm tiếp) · chặn AI gõ vào ô mật khẩu / OTP
 ├── commands/                         /test-ai-kit:cai-dat · /test-ai-kit:thu-demo · /test-ai-kit:kiem-thu (Agent tổng) · /test-ai-kit:mo-he-thong
 ├── agents/                           8 agent con: doc-hieu-he-thong, kham-pha-giao-dien, thiet-ke-kich-ban, sinh-du-lieu,
@@ -58,6 +58,7 @@ Script Python chạy bằng `test-ai-kit/.venv` của tester (lệnh cài đặt
 | GĐ1 | Khung cài đặt: marketplace, lệnh cài đặt, Lark Base, đăng nhập an toàn, hướng dẫn cài | Xong (chưa thử cài thật) |
 | GĐ2 | Agent tổng + 8 agent con, skill và script | Xong (chưa chạy thử trong Claude Code) |
 | GĐ2.5 | Trang kết quả dạng Artifact, chạy thử DEMO ngay sau cài, hook khởi động phiên | Xong (chưa chạy thử trong Claude Code) |
+| GĐ2.7 | Kèm sẵn kết nối Figma; lệnh cài đặt kiểm tra và dẫn đăng nhập Lark/Figma | Xong (chưa thử đăng nhập Figma trong Claude Code) |
 | GĐ2.6 | Tiếp nhận một lần: yêu cầu + tài liệu + dữ liệu + Figma + website → tự phân loại (`tiep_nhan.py`), phiếu tiếp nhận, tự chạy đến cổng đầu | Xong (đã thử phân loại trên SRS/CSDL BTXH thật) |
 | GĐ3 | Cài thử trên máy tester, chạy DEMO rồi BTXH bằng Claude Max, đo thời gian so với baseline | Tiếp theo |
 
