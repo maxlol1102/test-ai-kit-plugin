@@ -40,14 +40,20 @@ Gõ:
 ```
 /test-ai-kit:cai-dat
 ```
-Claude kiểm tra Node.js, trình duyệt, kết nối Lark, tạo thư mục làm việc và **Lark Base "Quản lý kiểm thử"** (hỏi bạn đồng ý trước khi tạo). Làm theo các mục báo ⚠️/❌ nếu có.
+Claude kiểm tra Node.js, cài Python và thư viện (hỏi trước khi cài), kiểm tra trình duyệt, kết nối Lark, tạo thư mục làm việc và **Lark Base "Quản lý kiểm thử"** (hỏi bạn đồng ý trước khi tạo). Làm theo các mục báo ⚠️/❌ nếu có.
 
 ## Dùng thử
 
-```
-/test-ai-kit:mo-he-thong http://127.0.0.1:8766  Cán bộ tiếp nhận
-```
-Cửa sổ Edge mở ra – **bạn tự đăng nhập**, xong nhắn "xong". Claude không bao giờ nhập hay nhìn thấy mật khẩu, và phiên đăng nhập mất khi đóng trình duyệt.
+1. Bấm đúp `mau/he-thong-demo/CHAY-DEMO.cmd` trong repo (hệ thống DEMO giả lập, cổng 8766) – hoặc dùng hệ thống thật được giao.
+2. Gõ:
+   ```
+   /test-ai-kit:kiem-thu
+   ```
+   **Agent tổng** hỏi mã dự án, URL, vai trò test, link Figma (nếu có), rồi dẫn từng bước: đọc hiểu tài liệu → kịch bản (bạn duyệt) → dữ liệu → kiểm tra thiết lập → kiểm tra điều kiện → chạy test trên trình duyệt (bạn xác nhận kết quả) → báo cáo → Lark.
+3. Khi cửa sổ Edge mở trang đăng nhập – **bạn tự đăng nhập**, xong nhắn "xong". Claude không bao giờ nhập hay nhìn thấy mật khẩu; phiên đăng nhập mất khi đóng trình duyệt.
+4. Hỏi tiến độ bất cứ lúc nào: `/test-ai-kit:kiem-thu tiến độ`.
+
+Kết quả nằm trong `test-ai-kit/du-an/<mã>/` của thư mục làm việc (Excel kịch bản, dữ liệu, biểu mẫu kết quả, ảnh bằng chứng).
 
 ## Cập nhật bản mới
 

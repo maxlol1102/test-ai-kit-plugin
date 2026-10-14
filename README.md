@@ -11,26 +11,52 @@ Bộ công cụ AI kiểm thử phần mềm của Trí Nam, đóng gói thành 
 - **Không chứa tài liệu thật của khách hàng.** Tài liệu dự án nằm trong thư mục làm việc của tester (`test-ai-kit/du-an/`), không đưa vào repo.
 - Repo để **private**; người dùng cần quyền đọc.
 
-## Cấu trúc
+## Cách hoạt động
 
 ```
-.claude-plugin/marketplace.json     marketplace "trinam"
-plugins/test-ai-kit/
-├── .claude-plugin/plugin.json
-├── .mcp.json                       Playwright MCP (--isolated, Edge) – không lưu phiên đăng nhập
-├── hooks/                          chặn AI gõ vào ô mật khẩu / OTP
-├── commands/                       /test-ai-kit:cai-dat, /test-ai-kit:mo-he-thong
-├── skills/                         dang-nhap-an-toan, cai-dat-lark-base
-└── agents/                         (GĐ2) Agent tổng + 8 agent con
+Tester ──/test-ai-kit:kiem-thu──▶ AGENT TỔNG (phiên chính: điều phối, hỏi tester, mở trình duyệt cho tester đăng nhập)
+                                   │ giao việc theo thứ tự, dừng ở cổng tester quyết định
+   ┌───────────────┬───────────────┼────────────────┬─────────────────┐
+ 1 Đọc hiểu       2 Khám phá      3 Thiết kế        4 Sinh dữ liệu    5 Kiểm tra thiết lập
+   hệ thống         giao diện       kịch bản          theo chuyên đề    (validate phần dev làm)
+   └───────────────┴───────────────┴────────────────┴─────────────────┘
+                 6 Kiểm tra điều kiện (cổng) ─▶ 7 Thực thi (Playwright) ─▶ 8 Báo lỗi + báo cáo + Lark
 ```
+Kết quả mỗi bước là file trong thư mục làm việc của tester: `test-ai-kit/du-an/<MÃ>/` (cấu trúc: skill `dieu-phoi-kiem-thu/references/cau-truc-du-an.md`).
+
+## Cấu trúc repo
+
+```
+.claude-plugin/marketplace.json       marketplace "trinam"
+plugins/test-ai-kit/
+├── .mcp.json                         Playwright MCP (--isolated, Edge) – không lưu phiên đăng nhập
+├── hooks/                            chặn AI gõ vào ô mật khẩu / OTP
+├── commands/                         /test-ai-kit:cai-dat · /test-ai-kit:kiem-thu (Agent tổng) · /test-ai-kit:mo-he-thong
+├── agents/                           8 agent con: doc-hieu-he-thong, kham-pha-giao-dien, thiet-ke-kich-ban, sinh-du-lieu,
+│                                     kiem-tra-thiet-lap, kiem-tra-dieu-kien, thuc-thi, bao-loi-bao-cao
+└── skills/
+    ├── dieu-phoi-kiem-thu/           vai trò Agent tổng, cấu trúc dự án, trang-thai.json
+    ├── quy-chuan-trinam/             quy chuẩn chung + mẫu biểu
+    ├── dang-nhap-an-toan/            tester tự đăng nhập, không lưu phiên
+    ├── doc-tai-lieu/                 scripts/tach_srs.py – tách SRS mẫu Trí Nam (đã thử: BTXH 233 chức năng)
+    ├── doc-giao-dien/                Figma hoặc quy ước UI mặc định
+    ├── sinh-test-case-trinam/        4 nhóm kịch bản, DX, xuất Excel có tự kiểm tra
+    ├── sinh-du-lieu-chuyen-de/       gói chuyên đề (chung, Bảo trợ xã hội, Thủ tục hành chính), xuất Excel, tạo văn bản .docx
+    ├── xuat-bao-cao/                 thống kê bằng code + Biểu mẫu kết quả (Mẫu 3)
+    ├── day-len-lark/                 đồng bộ 4 bảng, không xoá, ≤ 500 bản ghi/lần
+    └── cai-dat-lark-base/            tạo/nối Lark Base "Quản lý kiểm thử"
+mau/                                  SRS giả lập + hệ thống DEMO có 4 lỗi cài sẵn để thử
+```
+
+Script Python chạy bằng `test-ai-kit/.venv` của tester (lệnh cài đặt tự tạo).
 
 ## Lộ trình
 
 | Giai đoạn | Nội dung | Trạng thái |
 |---|---|---|
-| GĐ1 | Khung cài đặt: marketplace, lệnh cài đặt, Lark Base, đăng nhập an toàn, hướng dẫn cài | Đang làm |
-| GĐ2 | Agent tổng + 8 agent: đọc hiểu hệ thống, khám phá giao diện, thiết kế kịch bản, sinh dữ liệu theo chuyên đề, kiểm tra thiết lập, kiểm tra điều kiện, thực thi, báo lỗi + báo cáo | Chưa |
-| GĐ3 | Chạy thật trên BTXH bằng Claude Max, đo thời gian so với baseline | Chưa |
+| GĐ1 | Khung cài đặt: marketplace, lệnh cài đặt, Lark Base, đăng nhập an toàn, hướng dẫn cài | Xong (chưa thử cài thật) |
+| GĐ2 | Agent tổng + 8 agent con, skill và script | Xong (chưa chạy thử trong Claude Code) |
+| GĐ3 | Cài thử trên máy tester, chạy DEMO rồi BTXH bằng Claude Max, đo thời gian so với baseline | Tiếp theo |
 
 ## Thử plugin trên máy phát triển
 

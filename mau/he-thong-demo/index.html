@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEMO – Hệ thống TTHC tỉnh X (giả lập)</title>
+<style>
+  :root { --do: #b3261e; --do-dam: #8c1d17; --nen: #f3f4f7; --the: #fff; --vien: #e1e4ea; --vien-dam: #c9ced8; --chu: #1c2230; --nhat: #626b7d;
+    --xanh: #15803d; --nen-xanh: #e8f6ee; --nen-do: #fdecec; --bo: 10px; --bong: 0 1px 3px rgba(20, 28, 45, .08); }
+  * { box-sizing: border-box; }
+  body { font: 14px/1.55 "Segoe UI", system-ui, sans-serif; margin: 0; background: var(--nen); color: var(--chu); -webkit-font-smoothing: antialiased; }
+
+  /* Đầu trang */
+  .bang-hieu { background: linear-gradient(90deg, var(--do-dam), var(--do)); color: #fff; }
+  .bang-hieu .trong { max-width: 1080px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 14px; }
+  .huy-hieu { width: 46px; height: 46px; border-radius: 50%; background: #f5c542; color: var(--do-dam); display: grid; place-items: center;
+    font-weight: 800; font-size: 13px; box-shadow: 0 0 0 3px rgba(255, 255, 255, .25); flex: none; }
+  .ten-he-thong b { display: block; font-size: 17px; letter-spacing: .3px; }
+  .ten-he-thong span { font-size: 12.5px; opacity: .85; }
+  .thanh-menu { background: #fff; border-bottom: 1px solid var(--vien); box-shadow: var(--bong); }
+  .thanh-menu nav { max-width: 1080px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 4px; min-height: 48px; }
+  .thanh-menu nav:empty { display: none; }
+  .thanh-menu a { color: var(--chu); cursor: pointer; text-decoration: none; padding: 13px 14px; border-bottom: 2px solid transparent; font-weight: 500; }
+  .thanh-menu a:hover { color: var(--do); }
+  .thanh-menu a.dang-chon { color: var(--do); border-bottom-color: var(--do); }
+  .thanh-menu .nguoi-dung { margin-left: auto; color: var(--nhat); font-size: 13px; padding-right: 8px; }
+  .thanh-menu .nguoi-dung + a { border: 1px solid var(--vien-dam); border-radius: 8px; padding: 6px 12px; }
+
+  /* Nội dung */
+  main { max-width: 1080px; margin: 24px auto 48px; padding: 0 24px; }
+  h2 { font-size: 20px; margin: 0 0 4px; }
+  .mo-ta { color: var(--nhat); margin: 0 0 18px; }
+  .the { background: var(--the); border: 1px solid var(--vien); border-radius: var(--bo); box-shadow: var(--bong); padding: 22px 24px; margin-bottom: 16px; }
+  .the h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .5px; color: var(--do); margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--vien); }
+  .luoi-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+  .dong { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; }
+  .dong.rong { grid-column: 1 / -1; }
+  .dong label { font-weight: 500; }
+  input, select, textarea { font: inherit; height: 38px; padding: 0 12px; border: 1px solid var(--vien-dam); border-radius: 8px; width: 100%; background: #fff; color: var(--chu); }
+  textarea { height: auto; padding: 8px 12px; resize: vertical; }
+  input[type=file] { padding: 6px 8px; background: #fafbfc; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--do); box-shadow: 0 0 0 3px rgba(179, 38, 30, .12); }
+  .loi { color: #c62828; font-size: 12.5px; min-height: 0; } .loi:empty { display: none; }
+  .tb { padding: 12px 16px; border-radius: 8px; margin: 0 0 16px; border: 1px solid; }
+  .tb.ok { background: var(--nen-xanh); border-color: #b6e0c5; color: #14532d; } .tb.sai { background: var(--nen-do); border-color: #f3c1c1; color: #8c1d17; }
+  .bb::after { content: " *"; color: #c62828; }
+  .hang-nut { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  button { font: inherit; font-weight: 500; height: 38px; padding: 0 18px; cursor: pointer; border-radius: 8px; border: 1px solid var(--vien-dam); background: #fff; color: var(--chu); }
+  button:hover { border-color: var(--do); color: var(--do); }
+  button.chinh { background: var(--do); border-color: var(--do); color: #fff; } button.chinh:hover { background: var(--do-dam); color: #fff; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { border-bottom: 1px solid var(--vien); padding: 10px 12px; text-align: left; }
+  th { background: #f7f8fa; color: var(--nhat); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; }
+  tr:last-child td { border-bottom: 0; }
+  .khung-bang { border: 1px solid var(--vien); border-radius: var(--bo); overflow: hidden; margin-top: 16px; }
+  .khung-bang .tb { margin: 0; border: 0; border-radius: 0; }
+
+  /* Đăng nhập */
+  .dang-nhap { max-width: 420px; margin: 40px auto; }
+  .dang-nhap h2 { text-align: center; }
+  .dang-nhap .mo-ta { text-align: center; }
+  .dang-nhap button { width: 100%; margin-top: 6px; }
+  .chan-trang { text-align: center; color: var(--nhat); font-size: 12px; padding: 0 24px 24px; }
+  @media (max-width: 720px) { .luoi-2 { grid-template-columns: 1fr; } .ten-he-thong span { display: none; } }
+</style>
+<script src="tai-khoan-demo.js"></script>
+</head>
+<body>
+<header>
+  <div class="bang-hieu"><div class="trong">
+    <div class="huy-hieu">TTHC</div>
+    <div class="ten-he-thong"><b>HỆ THỐNG GIẢI QUYẾT TTHC TỈNH X</b><span>Cổng tiếp nhận và trả kết quả hồ sơ thủ tục hành chính</span></div>  </div></div>
+  <div class="thanh-menu"><nav id="menu"></nav></div>
+</header>
+<main id="trang"></main>
+<div class="chan-trang">Hệ thống giả lập phục vụ kiểm thử Test AI Kit – dữ liệu không có giá trị thực.</div>
+<script>
+// ===== Dữ liệu giả lập, lưu trong localStorage =====
+const THU_TUC = [{ ma: "TT01", ten: "Cấp phiếu lý lịch tư pháp", han: 5 }, { ma: "TT02", ten: "Chứng thực bản sao", han: 2 }];
+const TINH = { "Tỉnh X": ["Phường A", "Phường B", "Xã C"], "Tỉnh Y": ["Xã D", "Xã E"] };
+const doc = () => JSON.parse(localStorage.getItem("hoSo") || "null") ?? [
+  { ma: "STP-261001-0001", don_vi: "STP", thu_tuc: "Cấp phiếu lý lịch tư pháp", ho_ten: "Nguyễn Văn Thử", cccd: "000123456789", ngay_tn: "01/10/2026", hen: "08/10/2026", trang_thai: "Mới tiếp nhận" },
+  { ma: "SCT-261002-0001", don_vi: "SCT", thu_tuc: "Chứng thực bản sao", ho_ten: "Phạm Thị Mẫu", cccd: "000987654321", ngay_tn: "02/10/2026", hen: "06/10/2026", trang_thai: "Mới tiếp nhận" },
+];
+const ghi = (ds) => localStorage.setItem("hoSo", JSON.stringify(ds));
+const nguoi = () => JSON.parse(sessionStorage.getItem("nguoi") || "null");
+const $ = (s) => document.querySelector(s);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const dd = (d) => `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}/${d.getFullYear()}`;
+
+function congNgayLamViec(d, n) { const x = new Date(d); while (n > 0) { x.setDate(x.getDate() + 1); if (x.getDay() % 6 !== 0) n--; } return x; }
+
+function ve() {
+  const u = nguoi();
+  const traCuu = location.hash === "#tra-cuu";
+  $("#menu").innerHTML = u ? `<a class="${traCuu ? "" : "dang-chon"}" onclick="location.hash='#tiep-nhan'">Tiếp nhận hồ sơ</a><a class="${traCuu ? "dang-chon" : ""}" onclick="location.hash='#tra-cuu'">Tra cứu hồ sơ</a><span class="nguoi-dung">${esc(u.ho_ten)} – ${esc(u.don_vi)}</span><a onclick="dangXuat()">Đăng xuất</a>` : "";
+  if (!u) return veDangNhap();
+  (traCuu ? veTraCuu : veTiepNhan)();
+}
+window.onhashchange = ve;
+
+function veDangNhap(loi = "") {
+  $("#trang").innerHTML = `<div class="dang-nhap"><div class="the"><h2>Đăng nhập</h2><p class="mo-ta">Dành cho cán bộ tiếp nhận hồ sơ</p>${loi ? `<div class="tb sai">${esc(loi)}</div>` : ""}
+  <div class="dong"><label for="tdn">Tên đăng nhập</label><input id="tdn"></div>
+  <div class="dong"><label for="mk">Mật khẩu</label><input id="mk" type="password"></div>
+  <button class="chinh" onclick="dangNhap()">Đăng nhập</button></div></div>`;
+}
+function dangNhap() {
+  const tk = TAI_KHOAN_DEMO.find((t) => t.ten_dang_nhap === $("#tdn").value.trim() && t.mat_khau === $("#mk").value);
+  if (!tk) return veDangNhap("Sai tên đăng nhập hoặc mật khẩu");
+  sessionStorage.setItem("nguoi", JSON.stringify(tk)); location.hash = "#tiep-nhan"; ve();
+}
+function dangXuat() { sessionStorage.removeItem("nguoi"); location.hash = ""; ve(); }
+
+function veTiepNhan(tb = "") {
+  const truong = (id, nhan, bb, html, rong) => `<div class="dong${rong ? " rong" : ""}"><label for="${id}" class="${bb ? "bb" : ""}">${nhan}</label>${html}<div class="loi" id="loi-${id}"></div></div>`;
+  $("#trang").innerHTML = `<h2>Tiếp nhận hồ sơ mới</h2><p class="mo-ta">Các trường có dấu <span style="color:#c62828">*</span> là bắt buộc.</p>${tb}
+  <div class="the"><h3>Thủ tục</h3>
+  ${truong("thuTuc", "Thủ tục hành chính", 1, `<select id="thuTuc"><option value="">-- Chọn thủ tục --</option>${THU_TUC.map((t) => `<option>${t.ten}</option>`).join("")}</select>`, 1)}</div>
+  <div class="the"><h3>Thông tin người nộp</h3><div class="luoi-2">
+  ${truong("hoTen", "Họ tên người nộp", 1, `<input id="hoTen">`)}
+  ${truong("cccd", "Số CCCD", 1, `<input id="cccd">`)}
+  ${truong("ngaySinh", "Ngày sinh", 1, `<input id="ngaySinh" placeholder="dd/mm/yyyy">`)}
+  ${truong("sdt", "Số điện thoại", 1, `<input id="sdt">`)}
+  ${truong("email", "Email", 0, `<input id="email">`, 1)}</div></div>
+  <div class="the"><h3>Địa chỉ</h3><div class="luoi-2">
+  ${truong("tinh", "Tỉnh/Thành phố", 1, `<select id="tinh" onchange="doiTinh()"><option value="">-- Chọn --</option>${Object.keys(TINH).map((t) => `<option>${t}</option>`).join("")}</select>`)}
+  ${truong("xa", "Xã/Phường", 1, `<select id="xa"><option value="">-- Chọn tỉnh trước --</option></select>`)}
+  ${truong("diaChi", "Địa chỉ chi tiết", 1, `<input id="diaChi">`, 1)}</div></div>
+  <div class="the"><h3>Thành phần hồ sơ</h3><div class="luoi-2">
+  ${truong("tp1", "Thành phần 1: Tờ khai", 1, `<input id="tp1" type="file">`)}
+  ${truong("tp2", "Thành phần 2: Bản sao CCCD", 1, `<input id="tp2" type="file">`)}
+  ${truong("ghiChu", "Ghi chú", 0, `<textarea id="ghiChu" rows="2"></textarea>`, 1)}</div></div>
+  <div class="hang-nut"><button onclick="huy()">Hủy</button> <button onclick="luu(false)">Lưu</button> <button class="chinh" onclick="luu(true)">Lưu và chuyển xử lý</button></div>`;
+}
+function doiTinh() { $("#xa").innerHTML = `<option value="">-- Chọn --</option>` + (TINH[$("#tinh").value] || []).map((x) => `<option>${x}</option>`).join(""); }
+function huy() { if (confirm("Dữ liệu chưa lưu sẽ bị mất. Bạn có chắc chắn?")) location.hash = "#tra-cuu"; }
+
+function luu(chuyen) {
+  document.querySelectorAll(".loi").forEach((e) => (e.textContent = ""));
+  const v = (id) => $("#" + id).value.trim();
+  const loi = {};
+  if (!v("thuTuc")) loi.thuTuc = "Vui lòng chọn thủ tục";
+  if (!v("hoTen")) loi.hoTen = "Vui lòng nhập Họ tên";           // LỖI CÀI SẴN #1: không kiểm tra tối đa 100 ký tự
+  else if (!/^[\p{L} ]+$/u.test(v("hoTen"))) loi.hoTen = "Họ tên chỉ gồm chữ cái và khoảng trắng";
+  if (!/^\d{12}$/.test(v("cccd"))) loi.cccd = "Số CCCD gồm 12 chữ số";
+  const m = v("ngaySinh").match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!m) loi.ngaySinh = "Ngày sinh không hợp lệ (dd/mm/yyyy)";
+  else if (new Date(+m[3], +m[2] - 1, +m[1]) > new Date()) loi.ngaySinh = "Ngày sinh không được lớn hơn ngày hiện tại";
+  if (!/^\d{9,11}$/.test(v("sdt"))) loi.sdt = "Số điện thoại không hợp lệ"; // LỖI CÀI SẴN #2: đúng phải là 10 số, bắt đầu bằng 0
+  if (v("email") && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("email"))) loi.email = "Email không đúng định dạng";
+  if (!v("tinh")) loi.tinh = "Vui lòng chọn Tỉnh/Thành phố";
+  if (!v("xa")) loi.xa = "Vui lòng chọn Xã/Phường";
+  if (!v("diaChi")) loi.diaChi = "Vui lòng nhập Địa chỉ chi tiết"; else if (v("diaChi").length > 255) loi.diaChi = "Tối đa 255 ký tự";
+  if (v("ghiChu").length > 1000) loi.ghiChu = "Tối đa 1000 ký tự";
+  for (const tp of ["tp1", "tp2"]) {
+    const f = $("#" + tp).files[0];
+    if (!f) loi[tp] = "Hồ sơ chưa đủ thành phần bắt buộc"; else if (f.size > 10 * 1024 * 1024) loi[tp] = "Tệp vượt quá 10 MB";
+  }
+  if (Object.keys(loi).length) {
+    Object.entries(loi).forEach(([k, t]) => ($("#loi-" + k).textContent = t));
+    return;
+  }
+  const u = nguoi(), ds = doc(), nay = new Date();
+  const ngay = `${String(nay.getFullYear()).slice(2)}${String(nay.getMonth() + 1).padStart(2, "0")}${String(nay.getDate()).padStart(2, "0")}`;
+  const stt = ds.filter((h) => h.ma.startsWith(`${u.ma_don_vi}-${ngay}`)).length + 1;
+  const tt = THU_TUC.find((t) => t.ten === v("thuTuc"));
+  const hs = { ma: `${u.ma_don_vi}-${ngay}-${String(stt).padStart(4, "0")}`, don_vi: u.ma_don_vi, thu_tuc: tt.ten, ho_ten: v("hoTen"),
+    cccd: v("cccd"), ngay_tn: dd(nay), hen: dd(congNgayLamViec(nay, tt.han)), trang_thai: chuyen ? "Chờ phân công" : "Mới tiếp nhận" };
+  ds.push(hs); ghi(ds);
+  veTiepNhan(`<div class="tb ok">Tiếp nhận hồ sơ thành công. Mã hồ sơ: <b>${hs.ma}</b> – Ngày hẹn trả: <b>${hs.hen}</b>${chuyen ? " – Đã chuyển xử lý" : ""}</div>`);
+}
+
+function veTraCuu() {
+  $("#trang").innerHTML = `<h2>Tra cứu hồ sơ</h2><p class="mo-ta">Tìm theo mã hồ sơ hoặc họ tên người nộp.</p>
+  <div class="the"><div class="luoi-2">
+  <div class="dong"><label for="tkMa">Mã hồ sơ</label><input id="tkMa"></div>
+  <div class="dong"><label for="tkTen">Họ tên người nộp</label><input id="tkTen"></div></div>
+  <div class="hang-nut"><button class="chinh" onclick="timKiem()">Tìm kiếm</button></div><div id="kq"></div></div>`;
+  timKiem();
+}
+function timKiem() {
+  const ma = $("#tkMa").value.trim(), ten = $("#tkTen").value.trim().toLowerCase();
+  // LỖI CÀI SẴN #3: hiển thị hồ sơ của mọi đơn vị (BR-05: chỉ đơn vị mình)
+  // LỖI CÀI SẴN #4: tìm họ tên có phân biệt dấu (trả lời BA DX-27: không phân biệt dấu)
+  const ds = doc().filter((h) => (!ma || h.ma === ma) && (!ten || h.ho_ten.toLowerCase().includes(ten)));
+  $("#kq").innerHTML = `<div class="khung-bang">` + (ds.length ? `<table><tr><th>Mã hồ sơ</th><th>Thủ tục</th><th>Người nộp</th><th>Ngày tiếp nhận</th><th>Ngày hẹn trả</th><th>Trạng thái</th></tr>
+    ${ds.map((h) => `<tr><td>${esc(h.ma)}</td><td>${esc(h.thu_tuc)}</td><td>${esc(h.ho_ten)}</td><td>${esc(h.ngay_tn)}</td><td>${esc(h.hen)}</td><td>${esc(h.trang_thai)}</td></tr>`).join("")}</table>`
+    : `<div class="tb sai">Không tìm thấy hồ sơ phù hợp</div>`) + `</div>`;
+}
+ve();
+</script>
+</body>
+</html>
